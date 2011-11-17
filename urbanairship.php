@@ -40,7 +40,6 @@ class AirshipDeviceList implements Iterator, Countable {
             throw new AirshipFailure($response[1], $response_code);
         }
         $result = json_decode($response[1]);
-        var_dump($result->next_page);
         if ($this->_page == null) {
             $this->_page = $result;
         } else {
