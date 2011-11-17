@@ -2,7 +2,7 @@
 
 // Php module for using the Urban Airship API
 
-require_once 'RESTClient.php';
+require_once(dirname(__FILE__).'/RESTClient.php');
 
 define('SERVER', 'go.urbanairship.com');
 define('BASE_URL', 'https://go.urbanairship.com/api');
@@ -40,11 +40,9 @@ class AirshipDeviceList implements Iterator, Countable {
             throw new AirshipFailure($response[1], $response_code);
         }
         $result = json_decode($response[1]);
-        var_dump($result->next_page);
         if ($this->_page == null) {
             $this->_page = $result;
         } else {
-            echo 'got next page of device tokens';
             $this->_page->device_tokens = array_merge($this->_page->device_tokens, $result->device_tokens);
             $this->_page->next_page = $result->next_page;
         }
@@ -74,7 +72,7 @@ class AirshipDeviceList implements Iterator, Countable {
 
     function valid() {
         if (!isset($this->_page->device_tokens[$this->_position])) {
-            $next_page = $this->_page->next_page;
+            $next_page =  isset($this->_page->next_page) ? $this->_page->next_page : null;
             if ($next_page == null) {
                 return false;
             } else {
