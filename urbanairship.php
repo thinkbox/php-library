@@ -2,7 +2,7 @@
 
 // Php module for using the Urban Airship API
 
-require_once 'RESTClient.php';
+require_once(dirname(__FILE__).'/RESTClient.php');
 
 define('SERVER', 'go.urbanairship.com');
 define('BASE_URL', 'https://go.urbanairship.com/api');
