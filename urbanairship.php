@@ -43,7 +43,6 @@ class AirshipDeviceList implements Iterator, Countable {
         if ($this->_page == null) {
             $this->_page = $result;
         } else {
-            echo 'got next page of device tokens';
             $this->_page->device_tokens = array_merge($this->_page->device_tokens, $result->device_tokens);
             $this->_page->next_page = $result->next_page;
         }
