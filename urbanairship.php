@@ -72,7 +72,7 @@ class AirshipDeviceList implements Iterator, Countable {
 
     function valid() {
         if (!isset($this->_page->device_tokens[$this->_position])) {
-            $next_page = $this->_page->next_page;
+            $next_page =  isset($this->_page->next_page) ? $this->_page->next_page : null;
             if ($next_page == null) {
                 return false;
             } else {
