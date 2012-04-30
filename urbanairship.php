@@ -195,7 +195,7 @@ class Airship {
      Return device tokens marked as inactive since this timestamp
      Return a list of (device token, timestamp, alias) functions.
      */
-    public function feedback($since) {
+    public function feedback(DateTime $since) {
         $url = FEEDBACK_URL . '?' . 'since=' . rawurlencode($since->format('c'));
         $response = $this->_request($url, 'GET', null, null);
         $response_code = $response[0];
