@@ -7,6 +7,7 @@ require_once(dirname(__FILE__).'/RESTClient.php');
 define('SERVER', 'go.urbanairship.com');
 define('BASE_URL', 'https://go.urbanairship.com/api');
 define('DEVICE_TOKEN_URL', BASE_URL . '/device_tokens/');
+define('DEVICE_TOKEN_COUNT_URL', BASE_URL . '/device_tokens/count/');
 define('PUSH_URL', BASE_URL . '/push/');
 define('BROADCAST_URL',  BASE_URL . '/push/broadcast/');
 define('FEEDBACK_URL', BASE_URL . '/device_tokens/feedback/');
@@ -154,6 +155,15 @@ class Airship {
         return json_decode($response[1]);
     }
 
+    public function get_device_token_count() {
+        $url = DEVICE_TOKEN_COUNT_URL;
+        $response = $this->_request($url, 'GET', null, null);
+        $response_code = $response[0];
+        if ($response_code != 200) {
+            throw new AirshipFailure($response[1], $response_code);
+        }
+        return json_decode($response[1]);
+    }
 
     public function get_device_tokens() {
         return new AirshipDeviceList($this);
