@@ -109,13 +109,13 @@ class Airship {
     public function register($device_token, $alias=null, $tags=null, $badge=null) {
         $url = DEVICE_TOKEN_URL . $device_token;
         $payload = array();
-        if ($alias != null) {
+        if ($alias !== null) {
             $payload['alias'] = $alias;
         }
-        if ($tags != null) {
+        if ($tags !== null) {
             $payload['tags'] = $tags;
         }
-        if ($badge != null) {
+        if ($badge !== null) {
             $payload['badge'] = $badge;
         }
         if (count($payload) != 0) {
